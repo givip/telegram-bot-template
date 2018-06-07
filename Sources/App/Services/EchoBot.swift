@@ -18,6 +18,7 @@ final class EchoBot: ServiceType {
     /// Dictionary for user echo modes
     var userEchoModes: [Int64: Bool] = [:]
     
+    ///Conformance to `ServiceType` protocol, fabric methhod
     static func makeService(for worker: Container) throws -> ExampleEchoBot {
         guard let token = Environment.get("TELEGRAM_BOT_TOKEN") else {
             throw CoreError(identifier: "Enviroment variables", reason: "Cannot find telegram bot token")
@@ -42,6 +43,8 @@ final class EchoBot: ServiceType {
         self.updater = Updater(bot: bot, dispatcher: dispatcher)
     }
     
+    /// Initializing dispatcher, object that receive updates from Updater
+    /// and pass them throught handlers pipeline
     func configureDispatcher() throws -> Dispatcher {
         ///Dispatcher - handle all incoming messages
         let dispatcher = Dispatcher(bot: bot)
