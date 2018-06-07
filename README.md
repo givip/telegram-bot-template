@@ -5,7 +5,7 @@
 ### Install with Vapor CLI
 
 ```
-$ vapor new --template=https://github.com/givip/telegram-bot-template
+$ vapor new MyBot --template=https://github.com/givip/telegram-bot-template
 ```
 
 ### Install without Vapor CLI
