@@ -10,6 +10,7 @@ $ vapor new --template=https://github.com/givip/telegram-bot-template
 
 ### Install without Vapor CLI
 
+Clone this repository, then run
 ```
 $ swift package resolve
 $ swift package generate-xcodeproj
