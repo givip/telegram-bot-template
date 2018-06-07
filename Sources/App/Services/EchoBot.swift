@@ -1,6 +1,6 @@
 //
-//  ExampleEchoBot.swift
-//  ExampleEchoBot
+//  EchoBot.swift
+//  EchoBot
 //
 //  Created by Givi Pataridze on 31.05.2018.
 //
@@ -9,7 +9,7 @@ import Foundation
 import Telegrammer
 import Vapor
 
-final class ExampleEchoBot: ServiceType {
+final class EchoBot: ServiceType {
     
     let bot: Bot
     var updater: Updater?
@@ -23,14 +23,14 @@ final class ExampleEchoBot: ServiceType {
             throw CoreError(identifier: "Enviroment variables", reason: "Cannot find telegram bot token")
         }
         
-        var settings = Bot.Settings(token: token, debugMode: true)
+        let settings = Bot.Settings(token: token, debugMode: true)
     
         /// Setting up webhooks https://core.telegram.org/bots/webhooks
-        settings.webhooksIp = "127.127.0.1" ///Internal IP
-        settings.webhooksPort = 8443 ///Internal Port
-        settings.webhooksUrl = "https://127.127.0.1:8443/webhooks" ///External access url
-        settings.webhooksPublicCert = "public.pem" ///Public key filename
-        settings.webhooksPrivateKey = "private.pem" ///Private key filename
+        /// settings.webhooksIp = "127.127.0.1" ///Internal IP
+        /// settings.webhooksPort = 8443 ///Internal Port
+        /// settings.webhooksUrl = "https://127.127.0.1:8443/webhooks" ///External access url
+        /// settings.webhooksPublicCert = "public.pem" ///Public key filename
+        /// settings.webhooksPrivateKey = "private.pem" ///Private key filename
         
         return try ExampleEchoBot(settings: settings)
     }
