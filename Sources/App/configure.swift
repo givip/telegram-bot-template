@@ -2,9 +2,6 @@ import Vapor
 
 /// Called before your application initializes.
 public func configure(_ config: inout Config, _ env: inout Environment, _ services: inout Services) throws {
-    /// Register defau
-    services = Services.default()
-    
     /// Setting up HTTPServer
     let serverConfig = NIOServerConfig.default(hostname: "127.0.0.1")
     services.register(serverConfig)
