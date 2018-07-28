@@ -19,7 +19,7 @@ final class EchoBot: ServiceType {
     var userEchoModes: [Int64: Bool] = [:]
     
     ///Conformance to `ServiceType` protocol, fabric methhod
-    static func makeService(for worker: Container) throws -> ExampleEchoBot {
+    static func makeService(for worker: Container) throws -> EchoBot {
         guard let token = Environment.get("TELEGRAM_BOT_TOKEN") else {
             throw CoreError(identifier: "Enviroment variables", reason: "Cannot find telegram bot token")
         }
@@ -33,7 +33,7 @@ final class EchoBot: ServiceType {
         /// settings.webhooksPublicCert = "public.pem" ///Public key filename
         /// settings.webhooksPrivateKey = "private.pem" ///Private key filename
         
-        return try ExampleEchoBot(settings: settings)
+        return try EchoBot(settings: settings)
     }
     
     init(settings: Bot.Settings) throws {
@@ -61,9 +61,9 @@ final class EchoBot: ServiceType {
     }
 }
 
-extension ExampleEchoBot {
+extension EchoBot {
     ///Callback for Command handler, which send Echo mode status for user
-    func echoModeSwitch(_ update: Update, _ updateQueue: Worker?, _ jobQueue: Worker?) throws {
+    func echoModeSwitch(_ update: Update, _ context: BotContext?) throws {
         guard let message = update.message,
             let user = message.from else { return }
         
@@ -81,7 +81,7 @@ extension ExampleEchoBot {
     }
     
     ///Callback for Message handler, which send echo message to user
-    func echoResponse(_ update: Update, _ updateQueue: Worker?, _ jobQueue: Worker?) throws {
+    func echoResponse(_ update: Update, _ context: BotContext?) throws {
         guard let message = update.message,
             let user = message.from,
             let on = userEchoModes[user.id],
