@@ -27,11 +27,17 @@ final class EchoBot: ServiceType {
         let settings = Bot.Settings(token: token, debugMode: true)
     
         /// Setting up webhooks https://core.telegram.org/bots/webhooks
-        /// settings.webhooksIp = "127.127.0.1" ///Internal IP
-        /// settings.webhooksPort = 8443 ///Internal Port
-        /// settings.webhooksUrl = "https://127.127.0.1:8443/webhooks" ///External access url
-        /// settings.webhooksPublicCert = "public.pem" ///Public key filename
-        /// settings.webhooksPrivateKey = "private.pem" ///Private key filename
+        /// Internal server address (Local IP), where server will starts
+        // settings.webhooksIp = "127.0.0.1"
+        
+        /// Internal server port, must be different from Vapor port
+        // settings.webhooksPort = 8181
+        
+        /// External endpoint for your bot server
+        // settings.webhooksUrl = "https://website.com/webhooks"
+        
+        /// If you are using self-signed certificate, point it's filename
+        // settings.webhooksPublicCert = "public.pem"
         
         return try EchoBot(settings: settings)
     }
